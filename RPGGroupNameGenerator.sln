@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30406.217
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPGGroupNameGenerator", "WerewolfPackGenerator\RPGGroupNameGenerator.csproj", "{7C3FA5FE-7DAA-4B44-BF3B-D57D51F818E7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7C3FA5FE-7DAA-4B44-BF3B-D57D51F818E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7C3FA5FE-7DAA-4B44-BF3B-D57D51F818E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7C3FA5FE-7DAA-4B44-BF3B-D57D51F818E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7C3FA5FE-7DAA-4B44-BF3B-D57D51F818E7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A93C98D4-D8A3-479C-B180-9D426FDB3FA8}
+	EndGlobalSection
+EndGlobal
