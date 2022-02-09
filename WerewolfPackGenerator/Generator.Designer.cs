@@ -45,13 +45,13 @@
             this.txtNames.Multiline = true;
             this.txtNames.Name = "txtNames";
             this.txtNames.ReadOnly = true;
-            this.txtNames.Size = new System.Drawing.Size(417, 722);
+            this.txtNames.Size = new System.Drawing.Size(417, 673);
             this.txtNames.TabIndex = 0;
             // 
             // btnGenerate
             // 
             this.btnGenerate.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnGenerate.Location = new System.Drawing.Point(184, 767);
+            this.btnGenerate.Location = new System.Drawing.Point(184, 718);
             this.btnGenerate.Name = "btnGenerate";
             this.btnGenerate.Size = new System.Drawing.Size(75, 23);
             this.btnGenerate.TabIndex = 1;
@@ -62,18 +62,18 @@
             // txtNumberOfNames
             // 
             this.txtNumberOfNames.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.txtNumberOfNames.Location = new System.Drawing.Point(80, 769);
+            this.txtNumberOfNames.Location = new System.Drawing.Point(80, 720);
             this.txtNumberOfNames.Name = "txtNumberOfNames";
             this.txtNumberOfNames.Size = new System.Drawing.Size(39, 20);
             this.txtNumberOfNames.TabIndex = 2;
-            this.txtNumberOfNames.Text = "54";
+            this.txtNumberOfNames.Text = "50";
             this.txtNumberOfNames.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtNumberOfNames_KeyPress);
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 772);
+            this.label1.Location = new System.Drawing.Point(12, 723);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(62, 13);
             this.label1.TabIndex = 3;
@@ -95,7 +95,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(442, 793);
+            this.ClientSize = new System.Drawing.Size(442, 744);
             this.Controls.Add(this.btnSettings);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtNumberOfNames);

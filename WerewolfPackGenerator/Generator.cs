@@ -1,13 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace RPGGroupNameGenerator
@@ -18,42 +14,31 @@ namespace RPGGroupNameGenerator
         List<string> NounsList;
         List<string> PlacesList;
         List<string> ModifiersList;
-
-        List<List<string>> MasterNamesList;
-
-        enum SentenceStructure : int
-        {
-            Adjectives = 0, Nouns = 1, Places = 2, Modifiers = 3
-        }
-
-        List<int>[] SentenceOrder = new List<int>[]
-        {
-            new List<int> { (int)SentenceStructure.Adjectives, (int)SentenceStructure.Nouns, (int)SentenceStructure.Modifiers, (int)SentenceStructure.Places },
-            new List<int> { (int)SentenceStructure.Adjectives, (int)SentenceStructure.Nouns },
-            new List<int> { (int)SentenceStructure.Adjectives, (int)SentenceStructure.Nouns },
-            new List<int> { (int)SentenceStructure.Adjectives, (int)SentenceStructure.Nouns },
-            new List<int> { (int)SentenceStructure.Nouns, (int)SentenceStructure.Modifiers, (int)SentenceStructure.Adjectives, (int)SentenceStructure.Places },
-            new List<int> { (int)SentenceStructure.Nouns, (int)SentenceStructure.Modifiers, (int)SentenceStructure.Places },
-            new List<int> { (int)SentenceStructure.Adjectives, (int)SentenceStructure.Nouns, (int)SentenceStructure.Modifiers, (int)SentenceStructure.Adjectives, (int)SentenceStructure.Places },
-            new List<int> { (int)SentenceStructure.Adjectives, (int)SentenceStructure.Places, (int)SentenceStructure.Nouns},
-            new List<int> { (int)SentenceStructure.Adjectives, (int)SentenceStructure.Places, (int)SentenceStructure.Nouns},
-            new List<int> { (int)SentenceStructure.Adjectives, (int)SentenceStructure.Places, (int)SentenceStructure.Nouns},
-        };
-        
+        List<KeyValuePair<SentenceStructure, List<string>>> MasterNamesList;                
+        List<List<SentenceStructure>> SentenceOrder;        
         Random RandomNumberGenerator = new Random();
 
         public RPGGroupNameGenerator()
         {
-            InitializeComponent();           
+            InitializeComponent();            
         }
+
+        #region Functions
 
         private bool PopulateLists()
         {
-            AdjectivesList = ReadCommaDelineatedFile(ConfigurationManager.AppSettings["Adjectives"].ToString());
-            NounsList = ReadCommaDelineatedFile(ConfigurationManager.AppSettings["Nouns"].ToString());
-            PlacesList = ReadCommaDelineatedFile(ConfigurationManager.AppSettings["Places"].ToString());
-            ModifiersList = ReadCommaDelineatedFile(ConfigurationManager.AppSettings["Modifiers"].ToString());
-            MasterNamesList = new List<List<string>> { AdjectivesList, NounsList, PlacesList, ModifiersList };
+            AdjectivesList = ReadCommaDelineatedFile(ConfigurationManager.AppSettings[SentenceStructure.Adjectives.ToString()]);
+            NounsList = ReadCommaDelineatedFile(ConfigurationManager.AppSettings[SentenceStructure.Nouns.ToString()]);
+            PlacesList = ReadCommaDelineatedFile(ConfigurationManager.AppSettings[SentenceStructure.Places.ToString()]);
+            ModifiersList = ReadCommaDelineatedFile(ConfigurationManager.AppSettings[SentenceStructure.Modifiers.ToString()]);
+            MasterNamesList = new List<KeyValuePair<SentenceStructure, List<string>>> 
+            {   
+                new KeyValuePair<SentenceStructure, List<string>> (SentenceStructure.Adjectives, AdjectivesList),
+                new KeyValuePair<SentenceStructure, List<string>> (SentenceStructure.Nouns, NounsList),
+                new KeyValuePair<SentenceStructure, List<string>> (SentenceStructure.Places, PlacesList),
+                new KeyValuePair<SentenceStructure, List<string>> (SentenceStructure.Modifiers, ModifiersList)
+            };
+            SentenceOrder = GetSentenceStructure();
 
             return ValidateLists();            
         }
@@ -92,31 +77,41 @@ namespace RPGGroupNameGenerator
             return true;
         }
 
-        private void btnGenerate_Click(object sender, EventArgs e)
+        private List<List<SentenceStructure>> GetSentenceStructure()
         {
-            if (PopulateLists())
-            {
-                txtNames.Clear();
+            string strSentences = File.ReadAllText(Constants.SENTENCE_STRUCTURE_PATH);
+            List<string> sentences = strSentences.Split(';').ToList<string>();
+            
+            List<List<SentenceStructure>> structureList = new List<List<SentenceStructure>>();
 
-                for (int i = 0; i < int.Parse(txtNumberOfNames.Text); i++)
-                {
-                    List<string> packNameList = DetermineOrder();
-                    PrintName(packNameList);
+            for (int i = 0; i < sentences.Count; i++)
+            {
+                List<SentenceStructure> structure = new List<SentenceStructure>();
+                for (int j = 0; j < sentences[i].Split(',').Length; j++)
+                {                    
+                    structure.Add((SentenceStructure)Enum.Parse(typeof(SentenceStructure), sentences[i].Split(',')[j]));
                 }
+
+                structureList.Add(structure);
             }
-        }
+
+            return structureList;
+        }       
 
         private List<string> DetermineOrder()
         {
             int randomNumber = RandomNumberGenerator.Next(0, SentenceOrder.Count());
 
-            List<int> listNumber = SentenceOrder[randomNumber];
+            List<SentenceStructure> structureList = SentenceOrder[randomNumber];
             List<string> packName = new List<string>();
             
-            foreach(int number in listNumber)
+            foreach(SentenceStructure structure in structureList)
             {
-                int index = RandomNumberGenerator.Next(0, MasterNamesList[number].Count());            
-                packName.Add(MasterNamesList[number][index]);
+                if (structure != SentenceStructure.None)
+                {
+                    int index = RandomNumberGenerator.Next(0, MasterNamesList.Where(x => x.Key == structure).Single().Value.Count());
+                    packName.Add(MasterNamesList.Where(x => x.Key == structure).Single().Value[index]);
+                }
             }
 
             return packName;
@@ -143,8 +138,25 @@ namespace RPGGroupNameGenerator
             else
             {               
                 return new List<string>();
+            }            
+        }
+
+        #endregion
+
+        #region Events
+
+        private void btnGenerate_Click(object sender, EventArgs e)
+        {
+            if (PopulateLists())
+            {
+                txtNames.Clear();
+
+                for (int i = 0; i < int.Parse(txtNumberOfNames.Text); i++)
+                {
+                    List<string> packNameList = DetermineOrder();
+                    PrintName(packNameList);
+                }
             }
-            
         }
 
         private void txtNumberOfNames_KeyPress(object sender, KeyPressEventArgs e)
@@ -161,5 +173,7 @@ namespace RPGGroupNameGenerator
 
             form.ShowDialog();
         }
+        
+        #endregion
     }
 }
