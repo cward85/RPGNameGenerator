@@ -10,27 +10,25 @@ namespace RPGGroupNameGenerator
 {
     public partial class RPGGroupNameGenerator : Form
     {
-        List<string> AdjectivesList;
-        List<string> NounsList;
-        List<string> PlacesList;
-        List<string> ModifiersList;
         List<KeyValuePair<SentenceStructure, List<string>>> MasterNamesList;                
-        List<List<SentenceStructure>> SentenceOrder;        
+       
         Random RandomNumberGenerator = new Random();
 
         public RPGGroupNameGenerator()
         {
-            InitializeComponent();            
+            InitializeComponent();
+            this.ActiveControl = txtNumberOfNames;
         }
 
         #region Functions
 
         private bool PopulateLists()
         {
-            AdjectivesList = ReadCommaDelineatedFile(ConfigurationManager.AppSettings[SentenceStructure.Adjectives.ToString()]);
-            NounsList = ReadCommaDelineatedFile(ConfigurationManager.AppSettings[SentenceStructure.Nouns.ToString()]);
-            PlacesList = ReadCommaDelineatedFile(ConfigurationManager.AppSettings[SentenceStructure.Places.ToString()]);
-            ModifiersList = ReadCommaDelineatedFile(ConfigurationManager.AppSettings[SentenceStructure.Modifiers.ToString()]);
+            List<string> AdjectivesList = ReadCommaDelineatedFile(ConfigurationManager.AppSettings[SentenceStructure.Adjectives.ToString()]);
+            List<string> NounsList = ReadCommaDelineatedFile(ConfigurationManager.AppSettings[SentenceStructure.Nouns.ToString()]);
+            List<string> PlacesList = ReadCommaDelineatedFile(ConfigurationManager.AppSettings[SentenceStructure.Places.ToString()]);
+            List<string> ModifiersList = ReadCommaDelineatedFile(ConfigurationManager.AppSettings[SentenceStructure.Modifiers.ToString()]);
+
             MasterNamesList = new List<KeyValuePair<SentenceStructure, List<string>>> 
             {   
                 new KeyValuePair<SentenceStructure, List<string>> (SentenceStructure.Adjectives, AdjectivesList),
@@ -38,33 +36,20 @@ namespace RPGGroupNameGenerator
                 new KeyValuePair<SentenceStructure, List<string>> (SentenceStructure.Places, PlacesList),
                 new KeyValuePair<SentenceStructure, List<string>> (SentenceStructure.Modifiers, ModifiersList)
             };
-            SentenceOrder = GetSentenceStructure();
-
-            return ValidateLists();            
+                   
+            return ValidateLists(MasterNamesList);            
         }
 
-        private bool ValidateLists()
+        private bool ValidateLists(List<KeyValuePair<SentenceStructure, List<string>>> p_lstSentenceParts)
         {
             string strErrorMessage = string.Empty;
 
-            if (AdjectivesList.Count == 0)
+            foreach(KeyValuePair<SentenceStructure, List<string>> sentencePart in p_lstSentenceParts)
             {
-                strErrorMessage += "Please go into your settings to select an Adjective list that is not empty.\n";
-            }
-
-            if (NounsList.Count == 0)
-            {
-                strErrorMessage += "Please go into your settings to select a Noun list that is not empty.\n";
-            }
-
-            if (PlacesList.Count == 0)
-            {
-                strErrorMessage += "Please go into your settings to select a Place list that is not empty.\n";
-            }
-
-            if (ModifiersList.Count == 0)
-            {
-                strErrorMessage += "Please go into your settings to select a Modifier list that is not empty.\n";
+                if (sentencePart.Value.Count == 0)
+                {
+                    strErrorMessage += "Go into your settings to select " + DetermineIfVowel(sentencePart.Key.ToString()) + sentencePart.Key.ToString() + " list that is not empty.\n";
+                }
             }
 
             if (strErrorMessage.Length > 0)
@@ -77,41 +62,43 @@ namespace RPGGroupNameGenerator
             return true;
         }
 
+        private string DetermineIfVowel(string p_strWord)
+        {
+            if (p_strWord.StartsWith("A") || p_strWord.StartsWith("E") || p_strWord.StartsWith("O") || p_strWord.StartsWith("I") || p_strWord.StartsWith("U") || p_strWord.StartsWith("Y"))
+            {
+                return "an ";
+            }
+
+            return "a";
+        }
+
         private List<List<SentenceStructure>> GetSentenceStructure()
         {
             string strSentences = File.ReadAllText(Constants.SENTENCE_STRUCTURE_PATH);
-            List<string> sentences = strSentences.Split(';').ToList<string>();
             
-            List<List<SentenceStructure>> structureList = new List<List<SentenceStructure>>();
-
-            for (int i = 0; i < sentences.Count; i++)
+            List<List<SentenceStructure>> allSentenceStructuresLists = new List<List<SentenceStructure>>();
+            strSentences.Split(';').ToList<string>().ForEach(x =>
             {
-                List<SentenceStructure> structure = new List<SentenceStructure>();
-                for (int j = 0; j < sentences[i].Split(',').Length; j++)
-                {                    
-                    structure.Add((SentenceStructure)Enum.Parse(typeof(SentenceStructure), sentences[i].Split(',')[j]));
-                }
+                List<SentenceStructure> sentenceStructureList = new List<SentenceStructure>();
+                x.Split(',').ToList().ForEach(y => sentenceStructureList.Add((SentenceStructure)Enum.Parse(typeof(SentenceStructure), y)));
+                allSentenceStructuresLists.Add(sentenceStructureList);
+            });
 
-                structureList.Add(structure);
-            }
-
-            return structureList;
+            return allSentenceStructuresLists;           
         }       
 
         private List<string> DetermineOrder()
         {
-            int randomNumber = RandomNumberGenerator.Next(0, SentenceOrder.Count());
+            List<List<SentenceStructure>> sentenceOrder = GetSentenceStructure();
+            int randomNumber = RandomNumberGenerator.Next(0, sentenceOrder.Count());
 
-            List<SentenceStructure> structureList = SentenceOrder[randomNumber];
+            List<SentenceStructure> structureList = sentenceOrder[randomNumber];
             List<string> packName = new List<string>();
             
-            foreach(SentenceStructure structure in structureList)
-            {
-                if (structure != SentenceStructure.None)
-                {
-                    int index = RandomNumberGenerator.Next(0, MasterNamesList.Where(x => x.Key == structure).Single().Value.Count());
-                    packName.Add(MasterNamesList.Where(x => x.Key == structure).Single().Value[index]);
-                }
+            foreach(SentenceStructure structure in structureList.Where(x => x != SentenceStructure.None))
+            {               
+                randomNumber = RandomNumberGenerator.Next(0, MasterNamesList.Where(x => x.Key == structure).Single().Value.Count());
+                packName.Add(MasterNamesList.Where(x => x.Key == structure).Single().Value[randomNumber]);                
             }
 
             return packName;
@@ -133,12 +120,13 @@ namespace RPGGroupNameGenerator
             {
                 string objFileContents = File.ReadAllText(p_strPath);
 
-                return objFileContents.Split(',').Select(x => x.Trim()).ToList<string>();
+                if (objFileContents.Length != 0)
+                {
+                    return objFileContents.Split(',').Select(x => x.Trim()).ToList<string>();
+                }               
             }
-            else
-            {               
-                return new List<string>();
-            }            
+            
+            return new List<string>();                        
         }
 
         #endregion
@@ -164,6 +152,11 @@ namespace RPGGroupNameGenerator
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar) && (e.KeyChar != '.'))
             {
                 e.Handled = true;
+            }
+            else if (e.KeyChar == (char)Keys.Enter)
+            {
+                e.Handled = true;
+                btnGenerate.PerformClick();
             }
         }
 

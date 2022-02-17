@@ -57,7 +57,7 @@
             this.btnOK.Location = new System.Drawing.Point(346, 492);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
-            this.btnOK.TabIndex = 1;
+            this.btnOK.TabIndex = 16;
             this.btnOK.Text = "Close";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
@@ -68,9 +68,9 @@
             this.lblAdjectiveList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAdjectiveList.Location = new System.Drawing.Point(7, 22);
             this.lblAdjectiveList.Name = "lblAdjectiveList";
-            this.lblAdjectiveList.Size = new System.Drawing.Size(70, 13);
-            this.lblAdjectiveList.TabIndex = 2;
-            this.lblAdjectiveList.Text = "Adjective List";
+            this.lblAdjectiveList.Size = new System.Drawing.Size(75, 13);
+            this.lblAdjectiveList.TabIndex = 1;
+            this.lblAdjectiveList.Text = "Adjectives List";
             // 
             // lblNounList
             // 
@@ -78,9 +78,9 @@
             this.lblNounList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNounList.Location = new System.Drawing.Point(7, 50);
             this.lblNounList.Name = "lblNounList";
-            this.lblNounList.Size = new System.Drawing.Size(52, 13);
-            this.lblNounList.TabIndex = 3;
-            this.lblNounList.Text = "Noun List";
+            this.lblNounList.Size = new System.Drawing.Size(57, 13);
+            this.lblNounList.TabIndex = 4;
+            this.lblNounList.Text = "Nouns List";
             // 
             // lblPlaceList
             // 
@@ -88,9 +88,9 @@
             this.lblPlaceList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPlaceList.Location = new System.Drawing.Point(6, 76);
             this.lblPlaceList.Name = "lblPlaceList";
-            this.lblPlaceList.Size = new System.Drawing.Size(53, 13);
-            this.lblPlaceList.TabIndex = 4;
-            this.lblPlaceList.Text = "Place List";
+            this.lblPlaceList.Size = new System.Drawing.Size(58, 13);
+            this.lblPlaceList.TabIndex = 7;
+            this.lblPlaceList.Text = "Places List";
             // 
             // lblModifierList
             // 
@@ -98,9 +98,9 @@
             this.lblModifierList.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblModifierList.Location = new System.Drawing.Point(6, 104);
             this.lblModifierList.Name = "lblModifierList";
-            this.lblModifierList.Size = new System.Drawing.Size(63, 13);
-            this.lblModifierList.TabIndex = 5;
-            this.lblModifierList.Text = "Modifier List";
+            this.lblModifierList.Size = new System.Drawing.Size(68, 13);
+            this.lblModifierList.TabIndex = 10;
+            this.lblModifierList.Text = "Modifiers List";
             // 
             // txtAdjective
             // 
@@ -109,7 +109,7 @@
             this.txtAdjective.Name = "txtAdjective";
             this.txtAdjective.ReadOnly = true;
             this.txtAdjective.Size = new System.Drawing.Size(166, 20);
-            this.txtAdjective.TabIndex = 6;
+            this.txtAdjective.TabIndex = 2;
             // 
             // txtNoun
             // 
@@ -118,7 +118,7 @@
             this.txtNoun.Name = "txtNoun";
             this.txtNoun.ReadOnly = true;
             this.txtNoun.Size = new System.Drawing.Size(166, 20);
-            this.txtNoun.TabIndex = 7;
+            this.txtNoun.TabIndex = 5;
             // 
             // txtPlace
             // 
@@ -136,7 +136,7 @@
             this.txtModifier.Name = "txtModifier";
             this.txtModifier.ReadOnly = true;
             this.txtModifier.Size = new System.Drawing.Size(166, 20);
-            this.txtModifier.TabIndex = 9;
+            this.txtModifier.TabIndex = 11;
             // 
             // btnAdjectiveFolder
             // 
@@ -145,7 +145,7 @@
             this.btnAdjectiveFolder.Location = new System.Drawing.Point(255, 19);
             this.btnAdjectiveFolder.Name = "btnAdjectiveFolder";
             this.btnAdjectiveFolder.Size = new System.Drawing.Size(22, 20);
-            this.btnAdjectiveFolder.TabIndex = 10;
+            this.btnAdjectiveFolder.TabIndex = 3;
             this.btnAdjectiveFolder.UseVisualStyleBackColor = true;
             this.btnAdjectiveFolder.Click += new System.EventHandler(this.btnAdjectiveFolder_Click);
             // 
@@ -156,7 +156,7 @@
             this.btnNounFolder.Location = new System.Drawing.Point(255, 47);
             this.btnNounFolder.Name = "btnNounFolder";
             this.btnNounFolder.Size = new System.Drawing.Size(22, 20);
-            this.btnNounFolder.TabIndex = 11;
+            this.btnNounFolder.TabIndex = 6;
             this.btnNounFolder.UseVisualStyleBackColor = true;
             this.btnNounFolder.Click += new System.EventHandler(this.btnNounFolder_Click);
             // 
@@ -167,7 +167,7 @@
             this.btnPlaceFolder.Location = new System.Drawing.Point(255, 73);
             this.btnPlaceFolder.Name = "btnPlaceFolder";
             this.btnPlaceFolder.Size = new System.Drawing.Size(22, 20);
-            this.btnPlaceFolder.TabIndex = 12;
+            this.btnPlaceFolder.TabIndex = 9;
             this.btnPlaceFolder.UseVisualStyleBackColor = true;
             this.btnPlaceFolder.Click += new System.EventHandler(this.btnPlaceFolder_Click);
             // 
@@ -178,7 +178,7 @@
             this.btnModifierFolder.Location = new System.Drawing.Point(255, 101);
             this.btnModifierFolder.Name = "btnModifierFolder";
             this.btnModifierFolder.Size = new System.Drawing.Size(22, 20);
-            this.btnModifierFolder.TabIndex = 13;
+            this.btnModifierFolder.TabIndex = 12;
             this.btnModifierFolder.UseVisualStyleBackColor = true;
             this.btnModifierFolder.Click += new System.EventHandler(this.btnModifierFolder_Click);
             // 
@@ -212,7 +212,7 @@
             this.lblFileListDescription.Location = new System.Drawing.Point(7, 135);
             this.lblFileListDescription.Name = "lblFileListDescription";
             this.lblFileListDescription.Size = new System.Drawing.Size(259, 13);
-            this.lblFileListDescription.TabIndex = 14;
+            this.lblFileListDescription.TabIndex = 13;
             this.lblFileListDescription.Text = "Select a file that has a comma separated list";
             // 
             // grdSentenceStructure
@@ -227,7 +227,7 @@
             this.grdSentenceStructure.Name = "grdSentenceStructure";
             this.grdSentenceStructure.RowHeadersVisible = false;
             this.grdSentenceStructure.Size = new System.Drawing.Size(703, 249);
-            this.grdSentenceStructure.TabIndex = 16;
+            this.grdSentenceStructure.TabIndex = 14;
             this.grdSentenceStructure.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdSentenceStructure_CellClick);
             // 
             // btnAddRow
@@ -236,7 +236,7 @@
             this.btnAddRow.Location = new System.Drawing.Point(637, 274);
             this.btnAddRow.Name = "btnAddRow";
             this.btnAddRow.Size = new System.Drawing.Size(75, 23);
-            this.btnAddRow.TabIndex = 17;
+            this.btnAddRow.TabIndex = 15;
             this.btnAddRow.Text = "Add Row";
             this.btnAddRow.UseVisualStyleBackColor = true;
             this.btnAddRow.Click += new System.EventHandler(this.btnAddRow_Click);
@@ -258,7 +258,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(746, 520);
+            this.ClientSize = new System.Drawing.Size(738, 524);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.gbFileLists);

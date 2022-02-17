@@ -70,22 +70,29 @@ namespace RPGGroupNameGenerator
             grdSentenceStructure.Columns.Add(deleteButton);
 
             List<string> wholeSentenceList = File.ReadAllText(Constants.SENTENCE_STRUCTURE_PATH).Split(';').Select(x => x.Trim()).Where(y => y.Length > 0).ToList<string>();
-            
-            for (int i = 0; i < wholeSentenceList.Count; i++)
-            {
-                grdSentenceStructure.Rows.Add(new DataGridViewRow());
-                List<string> singleSentence = wholeSentenceList[i].Split(',').Select(x => x.Trim()).ToList<string>();
-                for (int j = 0; j < singleSentence.Count; j++)
-                {
-                    var comboBox = new DataGridViewComboBoxCell();
-                    comboBox.DataSource = new List<string> { SentenceStructure.None.ToString(), SentenceStructure.Adjectives.ToString(), SentenceStructure.Nouns.ToString(), SentenceStructure.Modifiers.ToString(), SentenceStructure.Places.ToString() };
-                    comboBox.Value = singleSentence[j];
-                    
-                    grdSentenceStructure[j, i] = comboBox;
-                }
+            int rowIndex = 0;
 
-                
-            }            
+            wholeSentenceList.ForEach(sentence =>
+            {
+                int columnIndex = 0;
+
+                grdSentenceStructure.Rows.Add(new DataGridViewRow());
+
+                sentence.Split(',').ToList().ForEach(word =>
+                {
+                    DataGridViewComboBoxCell comboBox = new DataGridViewComboBoxCell();
+
+                    comboBox.DataSource = new List<string> 
+                    { 
+                        SentenceStructure.None.ToString(), SentenceStructure.Adjectives.ToString(), SentenceStructure.Nouns.ToString(), SentenceStructure.Modifiers.ToString(), SentenceStructure.Places.ToString() 
+                    };
+                    comboBox.Value = word.Trim();
+
+                    grdSentenceStructure[columnIndex++, rowIndex] = comboBox;                    
+                });
+
+                rowIndex++;
+            });               
         }
 
         private void InitializeFiles()
@@ -159,9 +166,10 @@ namespace RPGGroupNameGenerator
         private void btnAddRow_Click(object sender, EventArgs e)
         {
             grdSentenceStructure.Rows.Add(new DataGridViewRow());
+
             for (int i = 0; i < grdSentenceStructure.Rows[grdSentenceStructure.Rows.Count - 1].Cells.Count - 1; i++)
             {
-                var comboBox = new DataGridViewComboBoxCell();
+                DataGridViewComboBoxCell comboBox = new DataGridViewComboBoxCell();
                 comboBox.DataSource = new List<string> { SentenceStructure.None.ToString(), SentenceStructure.Adjectives.ToString(), SentenceStructure.Nouns.ToString(), SentenceStructure.Modifiers.ToString(), SentenceStructure.Places.ToString() };
                 comboBox.Value = SentenceStructure.None.ToString();
 
