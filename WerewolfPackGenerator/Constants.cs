@@ -1,4 +1,4 @@
-﻿namespace RPGGroupNameGenerator
+﻿namespace TraitGenerator
 {
     public class Constants
     {

@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace RPGGroupNameGenerator
+namespace TraitGenerator
 {
     public partial class RPGGroupNameGenerator : Form
     {
