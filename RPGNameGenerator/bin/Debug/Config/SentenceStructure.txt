@@ -1,0 +1,1 @@
+Adjectives,Nouns,Modifiers,Places,None,None;Adjectives,Nouns,Modifiers,Adjectives,Places,None;Adjectives,Nouns,None,None,None,None;Nouns,Modifiers,Places,None,None,None;Nouns,Modifiers,Adjectives,Places,None,None;Adjectives,Places,Nouns,None,None,None;Adjectives,Places,Nouns,None,None,None;Adjectives,Nouns,None,None,None,None;Adjectives,Nouns,None,None,None,None

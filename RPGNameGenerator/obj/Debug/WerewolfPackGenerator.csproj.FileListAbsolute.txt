@@ -1,0 +1,14 @@
+C:\Users\camil\source\repos\WerewolfPackGenerator\WerewolfPackGenerator\obj\Debug\WerewolfPackGenerator.csprojAssemblyReference.cache
+C:\Users\camil\source\repos\WerewolfPackGenerator\WerewolfPackGenerator\obj\Debug\WerewolfPackGenerator.Properties.Resources.resources
+C:\Users\camil\source\repos\WerewolfPackGenerator\WerewolfPackGenerator\obj\Debug\WerewolfPackGenerator.csproj.GenerateResource.cache
+C:\Users\camil\source\repos\WerewolfPackGenerator\WerewolfPackGenerator\obj\Debug\WerewolfPackGenerator.csproj.CoreCompileInputs.cache
+C:\Users\camil\source\repos\WerewolfPackGenerator\WerewolfPackGenerator\bin\Debug\WerewolfPackGenerator.exe.config
+C:\Users\camil\source\repos\WerewolfPackGenerator\WerewolfPackGenerator\bin\Debug\WerewolfPackGenerator.exe
+C:\Users\camil\source\repos\WerewolfPackGenerator\WerewolfPackGenerator\bin\Debug\WerewolfPackGenerator.pdb
+C:\Users\camil\source\repos\WerewolfPackGenerator\WerewolfPackGenerator\obj\Debug\WerewolfPackGenerator.exe
+C:\Users\camil\source\repos\WerewolfPackGenerator\WerewolfPackGenerator\obj\Debug\WerewolfPackGenerator.pdb
+C:\Users\camil\source\repos\WerewolfPackGenerator\WerewolfPackGenerator\obj\Debug\WerewolfPackGenerator.werewolfNameGenerator.resources
+C:\Users\camil\source\repos\WerewolfPackGenerator\WerewolfPackGenerator\bin\Debug\Dictionary\Adjectives.txt
+C:\Users\camil\source\repos\WerewolfPackGenerator\WerewolfPackGenerator\bin\Debug\Dictionary\Modifiers.txt
+C:\Users\camil\source\repos\WerewolfPackGenerator\WerewolfPackGenerator\bin\Debug\Dictionary\Nouns.txt
+C:\Users\camil\source\repos\WerewolfPackGenerator\WerewolfPackGenerator\bin\Debug\Dictionary\Places.txt

@@ -1,4 +1,4 @@
-﻿namespace RPGGroupNameGenerator
+﻿namespace RPGNameGenerator
 {
     partial class RPGGroupNameGenerator
     {

@@ -1,4 +1,4 @@
-﻿namespace RPGGroupNameGenerator
+﻿namespace RPGNameGenerator
 {
     public class Constants
     {
