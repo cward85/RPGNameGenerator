@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace TraitGenerator
+namespace RPGNameGenerator
 {
     public partial class GeneratorSettings : Form
     {       

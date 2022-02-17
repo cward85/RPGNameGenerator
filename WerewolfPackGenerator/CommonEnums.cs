@@ -1,4 +1,4 @@
-﻿namespace TraitGenerator
+﻿namespace RPGNameGenerator
 {
     public enum SentenceStructure
     {

@@ -1,4 +1,4 @@
-﻿namespace TraitGenerator
+﻿namespace RPGNameGenerator
 {
     partial class GeneratorSettings
     {
